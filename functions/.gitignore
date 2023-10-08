@@ -8,4 +8,4 @@ typings/
 # Node.js dependency directory
 node_modules/
 
-serviceAccount.json
+src/serviceAccount.json

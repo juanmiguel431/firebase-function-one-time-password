@@ -8,7 +8,7 @@
  */
 
 import admin from 'firebase-admin';
-import serviceAccount from '../serviceAccount.json';
+import serviceAccount from './serviceAccount.json';
 
 // import { onRequest } from 'firebase-functions/v2/https';
 // import * as logger from 'firebase-functions/logger';
