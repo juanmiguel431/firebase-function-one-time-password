@@ -7,6 +7,9 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
+import admin from 'firebase-admin';
+import serviceAccount from '../serviceAccount.json';
+
 // import { onRequest } from 'firebase-functions/v2/https';
 // import * as logger from 'firebase-functions/logger';
 
@@ -17,5 +20,9 @@
 //   logger.info('Hello logs!', { structuredData: true });
 //   response.send('Hello from Firebase JMPC!');
 // });
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 export * from './createUser';
