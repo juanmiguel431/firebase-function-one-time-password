@@ -10,3 +10,8 @@ node_modules/
 
 src/serviceAccount.json
 lib/serviceAccount.json
+
+src/twilioAccount.json
+lib/twilioAccount.json
+
+appEngineServiceAccount.json
