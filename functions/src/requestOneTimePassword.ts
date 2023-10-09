@@ -7,7 +7,11 @@ type Request = {
 }
 
 export const requestOneTimePassword = onRequest(async (request, response) => {
-  if (request.method === 'post') {
+  if (request.method !== 'POST') {
+    response.status(404);
+    return;
+  }
+  if (request.method === 'POST') {
     const { phone } = request.body as Request;
 
     if (!phone) {
@@ -15,12 +19,11 @@ export const requestOneTimePassword = onRequest(async (request, response) => {
       return;
     }
 
-    // Format the phone number to removed dashes and parens
-    const formattedPhone = String(phone).replace(/\D/g, '');
-
     try {
-      const userRecord = await admin.auth().getUser(formattedPhone);
+      // Format the phone number to removed dashes and parens
+      const formattedPhone = String(phone).replace(/\D/g, '');
 
+      const userRecord = await admin.auth().getUser(formattedPhone);
       if (!userRecord) {
         response.status(422).send({ error: 'User not found.' });
         return;

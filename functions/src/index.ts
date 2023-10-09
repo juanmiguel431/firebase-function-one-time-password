@@ -34,6 +34,7 @@ const serviceAccount = {
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  databaseURL: process.env.DATABASE_URL,
 });
 
 export * from './createUser';
