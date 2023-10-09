@@ -26,13 +26,19 @@ export const requestOneTimePassword = onRequest(async (request, response) => {
         return;
       }
 
+      const code = Math.floor(Math.random() * 8999 + 1000);
+
       const message = await client.messages.create({
-        body: 'Hola, Soy Juan Miguel',
+        body: `Your code is ${code}`,
         from: '+18622924301',
-        to: '+18298205436',
+        to: formattedPhone,
       });
 
-      console.log(message.sid);
+      await admin.database()
+        .ref(`users/${phone}`)
+        .update({ code: code, valid: true, messageSid: message.sid });
+
+      response.send({ success: true });
     } catch (e) {
       if (e instanceof Error) {
         response.status(500).send({ error: e.message });
