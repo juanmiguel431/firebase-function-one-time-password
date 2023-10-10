@@ -39,3 +39,4 @@ admin.initializeApp({
 
 export * from './createUser';
 export * from './requestOneTimePassword';
+export * from './verifyOneTimePassword';
